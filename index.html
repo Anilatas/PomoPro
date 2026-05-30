@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anıl Pomodoro Pro</title>
+  <meta name="theme-color" content="#1e293b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Anıl Pomo">
+  <link rel="apple-touch-icon" sizes="192x192" href="icon-192x192.png">
+  <link rel="icon" type="image/png" href="icon-512x512.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="audio-panel">
+    <div class="audio-menu">
+      <div class="audio-group">
+        <label>Bitiş Zili</label>
+        <input type="range" id="alarmVol" min="0" max="1" step="0.1" value="0.8">
+      </div>
+    </div>
+  </div>
+
+  <div class="todo-button-fixed">
+    <button id="toggleTodoBtn" onclick="toggleTodo()">✅ Yapılacaklar</button>
+  </div>
+
+  <div class="side-menu">
+    <button id="toggleNotesBtn" onclick="toggleNotes()">📝 Notlar</button>
+    <button id="toggleStatsBtn" onclick="toggleStats()">📊 Geçmiş</button>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="container">
+      <div class="profile-selector">
+        <select id="activeProfile" onchange="selectProfile(this.value)">
+          <option value="varsayilan">Varsayılan Mod</option>
+        </select>
+        <button onclick="createNewProfile()" class="small-btn">+</button>
+        <button id="togglePinBtn" onclick="togglePinProfile(activeProfile)" class="small-btn">☆</button>
+        <button id="deleteProfileBtn" onclick="deleteProfile(activeProfile)" class="small-btn">Sil</button>
+      </div>
+
+      <div class="mode-buttons">
+        <button onclick="setTimer('work')">Odaklan</button>
+        <button onclick="setTimer('short')">Kısa Mola</button>
+        <button onclick="setTimer('long')">Uzun Mola</button>
+      </div>
+
+      <div id="timer">25:00</div>
+
+      <div class="extra-time">
+        <button onclick="addExtra(1)">+1 Dk</button>
+        <button onclick="addExtra(5)">+5 Dk</button>
+      </div>
+
+      <div class="controls">
+        <button id="start" class="main-btn">Başlat</button>
+        <button id="reset" class="link-btn">Sıfırla</button>
+      </div>
+
+      <div class="settings">
+        <div class="input-group">
+          <label>Odak</label>
+          <input type="number" id="workTime" value="25" min="0" onchange="saveProfileSettings()">
+        </div>
+        <div class="input-group">
+          <label>K. Mola</label>
+          <input type="number" id="shortBreak" value="5" min="0" onchange="saveProfileSettings()">
+        </div>
+        <div class="input-group">
+          <label>U. Mola</label>
+          <input type="number" id="longBreak" value="15" min="0" onchange="saveProfileSettings()">
+        </div>
+      </div>
+    </div>
+
+    <div class="notes-container hidden" id="notesPanel">
+      <h3>Çalışma Notlarım</h3>
+      <textarea id="workNotes" placeholder="Buraya not alabilirsin..."></textarea>
+      <div class="notes-footer">Otomatik kaydediliyor...</div>
+    </div>
+
+    <div class="todo-container hidden" id="todoPanel">
+      <div class="todo-header">
+        <h3>Yapılacaklar</h3>
+        <button onclick="clearTodo()" class="clear-btn">Temizle</button>
+      </div>
+      <div class="todo-add">
+        <input type="text" id="todoInput" placeholder="Yeni görev ekle...">
+        <button onclick="addTodo()" class="small-btn">Ekle</button>
+      </div>
+      <div id="todoList" class="todo-list"></div>
+    </div>
+  </div>
+
+  <div id="statsPanel" class="stats-container hidden">
+    <h3>Çalışma Geçmişi</h3>
+    <div id="statsList"></div>
+    <div id="statsSummary" class="stats-summary"></div>
+    <button onclick="clearStats()" class="clear-btn">Geçmişi Temizle</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

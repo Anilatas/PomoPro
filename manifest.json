@@ -1,0 +1,27 @@
+{
+  "name": "Anıl Pomodoro Pro",
+  "short_name": "PomoPro",
+  "description": "Mobil ve masaüstü uyumlu Pomodoro zamanlayıcı, notlar ve yapılacaklar listesi.",
+  "lang": "tr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1e293b",
+  "theme_color": "#3b82f6",
+  "id": "anil-pomodoro-app",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
